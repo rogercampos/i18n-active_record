@@ -33,17 +33,6 @@ module I18n
     #   I18n::Backend::ActiveRecord::Translation.lookup(:"foo.bar")
     #   # => an array with the translation record :"foo.bar"
     #
-    # When the StoreProcs module was mixed into this model then Procs will
-    # be stored to the database as Ruby code and evaluated when :value is
-    # called.
-    #
-    #   Translation = I18n::Backend::ActiveRecord::Translation
-    #   Translation.create \
-    #     :locale => 'en'
-    #     :key    => 'foo'
-    #     :value  => lambda { |key, options| 'FOO' }
-    #   Translation.find_by_locale_and_key('en', 'foo').value
-    #   # => 'FOO'
     class ActiveRecord
       class Translation < ::ActiveRecord::Base
         TRUTHY_CHAR = "\001"

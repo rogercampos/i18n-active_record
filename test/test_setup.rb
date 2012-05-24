@@ -33,7 +33,6 @@ module I18n
           puts "can't use ActiveRecord backend because: #{e.message}"
         rescue ::ActiveRecord::ConnectionNotEstablished
           require 'i18n/backend/active_record'
-          require 'i18n/backend/active_record/store_procs'
           connect_active_record
           true
         end
