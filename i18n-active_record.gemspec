@@ -18,4 +18,8 @@ Gem::Specification.new do |s|
   s.rubyforge_project = '[none]'
 
   s.add_dependency 'i18n', '>= 0.6.0'
+  s.add_development_dependency "rake"
+  s.add_development_dependency "mocha"
+  s.add_development_dependency "sqlite3"
+  s.add_development_dependency "activerecord", "~> 3.0.0"
 end
