@@ -35,9 +35,6 @@ module I18n
     #
     class ActiveRecord
       class Translation < ::ActiveRecord::Base
-        TRUTHY_CHAR = "\001"
-        FALSY_CHAR = "\002"
-
         self.table_name = 'translations'
         attr_accessible :locale, :key, :value
 
@@ -69,29 +66,6 @@ module I18n
 
         def interpolates?(key)
           self.interpolations.include?(key) if self.interpolations
-        end
-
-        def value
-          value = read_attribute(:value)
-          if is_proc?
-            Kernel.eval(value)
-          elsif value == FALSY_CHAR
-            false
-          elsif value == TRUTHY_CHAR
-            true
-          else
-            value
-          end
-        end
-
-        def value=(value)
-          if value === false
-            value = FALSY_CHAR
-          elsif value === true
-            value = TRUTHY_CHAR
-          end
-
-          write_attribute(:value, value)
         end
       end
     end
